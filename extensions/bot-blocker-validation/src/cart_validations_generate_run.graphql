@@ -1,0 +1,38 @@
+query CartValidationsGenerateRunInput {
+  cart {
+    cost {
+      subtotalAmount {
+        amount
+      }
+    }
+    lines {
+      id
+      quantity
+      cost {
+        amountPerQuantity {
+          amount
+        }
+        totalAmount {
+          amount
+        }
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          title
+          price {
+            amount
+          }
+          product {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+  buyerJourney {
+    step
+  }
+}

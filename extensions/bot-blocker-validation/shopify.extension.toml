@@ -1,0 +1,16 @@
+api_version = "2026-10"
+
+[[extensions]]
+name = "bot-blocker-validation"
+handle = "bot-blocker-validation"
+type = "function"
+description = "Blocks checkout for carts containing a $0-priced line item."
+
+  [[extensions.targeting]]
+  target = "cart.validations.generate.run"
+  input_query = "src/cart_validations_generate_run.graphql"
+  export = "cart_validations_generate_run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"

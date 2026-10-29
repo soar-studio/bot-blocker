@@ -1,0 +1,33 @@
+# Bot Blocker — Shopify app that stops card-testing bots at checkout.
+# Phase 1: block carts containing $0 line items.
+#
+# Run `shopify app config link` once to populate client_id, application_url,
+# redirect_urls, and scopes from your Partner app. The placeholder values below
+# satisfy the CLI schema until that link runs.
+
+name = "Bot Blocker"
+handle = "bot-blocker"
+client_id = ""
+application_url = "https://example.com"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+
+[access_scopes]
+# https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = ""
+
+[auth]
+redirect_urls = ["https://example.com/auth/callback"]
+
+[webhooks]
+api_version = "2026-10"
+
+  [[webhooks.subscriptions]]
+  uri = "/webhooks/app/uninstalled"
+  topics = ["app/uninstalled"]
+
+  [[webhooks.subscriptions]]
+  topics = ["app/scopes_update"]
+  uri = "/webhooks/app/scopes_update"
